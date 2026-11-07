@@ -98,14 +98,14 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
 .wheel-heads{position:relative;z-index:3;display:grid;max-width:1240px;margin:10px auto 0;padding:0 6px}
 .wheel-heads h2{grid-area:1/1;font-family:var(--display);font-weight:650;font-size:clamp(34px,9.2vw,110px);line-height:1.04;color:var(--ink);margin:0;text-align:center;opacity:0;transition:opacity .2s ease;pointer-events:none}
 .wheel-heads h2.active{opacity:1}
-.wheel-stage{position:relative;z-index:1;height:clamp(380px,52vh,520px);max-width:1240px;margin:clamp(-170px,-14vw,-70px) auto 0}
-.wheel-disc{position:absolute;left:50%;top:50%;width:min(1140px,170vw);aspect-ratio:1/1;transform:translate(-50%,-50%) rotate(45deg);transition:transform .55s ease-in-out}
+.wheel-stage{position:relative;z-index:1;height:860px;max-width:1240px;margin:6px auto 0}
+.wheel-disc{position:absolute;left:50%;top:50%;width:min(680px,94vw);aspect-ratio:1/1;transform:translate(-50%,-50%) rotate(45deg);transition:transform .55s ease-in-out}
 .wheel-photo{position:absolute;width:44%;aspect-ratio:1/1;border-radius:50%;object-fit:cover;border:6px solid #fff;box-shadow:0 18px 44px rgba(74,47,35,.30)}
 .wp1{top:1%;left:1%}.wp2{top:1%;right:1%}.wp3{bottom:1%;right:1%}.wp4{bottom:1%;left:1%}
 .wheel-core{position:absolute;left:50%;top:50%;width:104px;height:104px;transform:translate(-50%,-50%);background:var(--orange);border-radius:50%;display:grid;place-items:center;z-index:2;box-shadow:0 10px 26px rgba(74,47,35,.25)}
 .wheel-core svg{width:62px;height:62px;animation:spin 3s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.wheel-caption{font-family:var(--mono);font-size:12.5px;color:var(--deep);margin:4px auto 0;text-align:center;max-width:620px;position:relative;z-index:3}
+.wheel-caption{font-family:var(--mono);font-size:12.5px;color:var(--deep);margin:20px auto 0;text-align:center;max-width:620px;position:relative;z-index:3}
 .wide-photo{max-width:1180px;margin:22px auto 0;border-radius:34px;overflow:hidden;position:relative;z-index:2}
 .wide-photo img{width:100%;height:clamp(320px,46vw,540px);object-fit:cover;object-position:center 44%}
 .photo-note{max-width:1180px;margin:8px auto 0;font-family:var(--mono);font-size:12px;color:var(--deep);text-align:right;padding:0 6px;position:relative;z-index:2}
@@ -272,7 +272,7 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
 .top-circle svg{width:20px;height:20px}
 
 /* Falling cups overlay: fixed to the viewport so a drop is seen where the reader is */
-#viewCanvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:120}
+#viewCanvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:45}
 
 /* Sticky pill (orange to lavender gradient, always on once past hero) */
 .sticky-pill{position:fixed;left:50%;transform:translate(-50%,180%);bottom:16px;z-index:80;background:linear-gradient(95deg,var(--orange),var(--lilac));border-radius:999px;display:flex;gap:2px;padding:6px;box-shadow:0 12px 32px rgba(60,20,10,.35);transition:transform .45s var(--ease);max-width:97vw}
@@ -323,7 +323,7 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
   .seg-photos{height:230px}
   .cg-block{grid-template-columns:1fr}
   .cg-block .illo{width:84px;height:84px}
-  .wheel-stage{height:440px}
+  .wheel-stage{height:840px}
 }
 @media (max-width:640px){
   .section{padding:64px 16px}
@@ -338,8 +338,8 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
   .main-nav a:not(.nav-cta){display:none}
   .topbar .tagline{display:none}
   .hero-content{padding-bottom:56px}
-  .wheel-stage{height:330px}
-  .wheel-disc{width:175vw}
+  .wheel-stage{height:125vw}
+  .wheel-disc{width:94vw}
   .wide-photo img{height:320px}
   .gallery-stage{height:520px}
   .g-item img{height:130px}
@@ -1146,8 +1146,12 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
   /* Viewport falling cups: a fixed full-screen canvas, so a cup visibly
      falls through the screen the reader is actually looking at the moment
      any Drop a Cup control is clicked (the way Sunbeam's bagel falls at
-     the top of its hero), then settles along the bottom edge of the
-     screen. The Cup Drop zone pile below keeps growing as before. */
+     the top of its hero). The fall takes about a second; on landing the
+     cup fades out and is removed, so the viewport always clears and no
+     cup ever lingers over content, the sticky pill, or the nav. The
+     canvas is pointer-events: none and sits below the sticky pill, so it
+     can never block a click. The Cup Drop zone pile below keeps growing
+     as before. */
   var vCanvas=document.getElementById("viewCanvas"), vCtx=vCanvas ? vCanvas.getContext("2d") : null, vCups=[], vLoop=false;
   function viewGround(){ return vCanvas.height-10; }
   function drawViewSettled(){
@@ -1166,15 +1170,14 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
     else if(vLoop){ /* next frame redraws at the new size */ }
   }
   function spawnViewCups(n){
-    if(!vCanvas || !vCtx) return;
+    if(!vCanvas || !vCtx || reduceMotion) return;
     for(var i=0;i<n;i++){
       (function(k){
         setTimeout(function(){
           var bean=Math.random()<0.35;
-          vCups.push({x:50+Math.random()*Math.max(60,vCanvas.width-100), y:-190-k*30, vy:1+Math.random()*2, vx:(Math.random()-0.5)*1.2, rot:Math.random()*Math.PI, vr:(Math.random()-0.5)*0.05, size:bean? 80+Math.random()*60 : 150+Math.random()*130, bean:bean, color:colors[Math.floor(Math.random()*colors.length)], settled:false});
-          if(vCups.length>30) vCups.splice(0, vCups.length-30);
+          vCups.push({x:50+Math.random()*Math.max(60,vCanvas.width-100), y:-170-k*30, vy:5+Math.random()*3, vx:(Math.random()-0.5)*1.2, rot:Math.random()*Math.PI, vr:(Math.random()-0.5)*0.05, size:bean? 46+Math.random()*30 : 92+Math.random()*48, bean:bean, color:colors[Math.floor(Math.random()*colors.length)], settled:false, fading:false, alpha:1, age:0});
+          if(vCups.length>12) vCups.splice(0, vCups.length-12);
           ensureViewLoop();
-          if(reduceMotion) drawViewSettled();
         }, k*150);
       })(i);
     }
@@ -1182,17 +1185,30 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
   function viewTick(){
     if(!vCtx) return;
     vCtx.clearRect(0,0,vCanvas.width,vCanvas.height);
+    if(!vCups.length){ vLoop=false; return; }
     var ground=viewGround();
-    vCups.forEach(function(c){
+    for(var i=vCups.length-1;i>=0;i--){
+      var c=vCups[i];
+      c.age++;
       if(!c.settled){
-        c.vy+=0.22; c.x+=c.vx; c.y+=c.vy; c.rot+=c.vr;
+        c.vy+=0.38; c.x+=c.vx; c.y+=c.vy; c.rot+=c.vr;
         if(c.x<30){ c.x=30; c.vx=Math.abs(c.vx)*0.6; }
         if(c.x>vCanvas.width-30){ c.x=vCanvas.width-30; c.vx=-Math.abs(c.vx)*0.6; }
         var rest=ground-(c.bean?c.size*0.45:c.size*0.42);
-        if(c.y>=rest){ c.y=rest; c.settled=true; c.rot=Math.round(c.rot/(Math.PI/6))*(Math.PI/6); }
+        if(c.y>=rest){ c.y=rest; c.settled=true; c.fading=true; c.rot=Math.round(c.rot/(Math.PI/6))*(Math.PI/6); }
       }
+      /* Safety net: a cup may never linger in the viewport. If one is
+         somehow still around after about 2.5 seconds, fade it out. */
+      if(c.age>150) c.fading=true;
+      if(c.fading){
+        c.alpha-=0.05;
+        if(c.alpha<=0){ vCups.splice(i,1); continue; }
+      }
+      vCtx.save(); vCtx.globalAlpha=Math.max(0,c.alpha);
       drawCup(vCtx,c);
-    });
+      vCtx.restore();
+    }
+    if(!vCups.length){ vCtx.clearRect(0,0,vCanvas.width,vCanvas.height); vLoop=false; return; }
     requestAnimationFrame(viewTick);
   }
   function ensureViewLoop(){
