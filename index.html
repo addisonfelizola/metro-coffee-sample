@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
 <link rel="icon" href="data:,">
-<title>Metro Coffee | UW Tacoma</title>
+<title>Metro Coffee (Sample Site) | UW Tacoma</title>
 <meta name="description" content="Metro Coffee on the UW Tacoma campus.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -263,6 +263,7 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
 .fb-circle{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:50%;background:#b31b10;box-shadow:0 5px 16px rgba(90,10,0,.4);color:#fff;font-family:Georgia,serif;font-weight:700;font-size:30px;line-height:1;text-decoration:none}
 .fb-circle:hover{background:#fff;color:#b31b10}
 .sources-line{border-top:1.5px dashed rgba(255,255,255,.5);margin-top:40px;padding-top:18px;font-size:13px;color:#ffd9c9;max-width:900px}
+.demo-note{margin:0;background:#2a2a2a;color:#fafafa;text-align:center;font-family:var(--mono);font-size:13px;font-weight:700;padding:8px 12px}
 .drop-btn{background:#fff;border:none;color:var(--red-deep);border-radius:999px;padding:11px 22px;font-weight:700;min-height:48px;font-family:var(--mono)}
 .drop-btn:hover{background:linear-gradient(100deg,var(--red-deep),var(--orange));color:#fff}
 .footer-bottom{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:22px;font-family:var(--mono);font-size:12.5px;color:#ffd9c9}
@@ -283,7 +284,6 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
 
 @media (max-width:960px){
   .fav-grid{grid-template-columns:1fr 1fr}
-  .finding-grid{grid-template-columns:1fr 1fr}
   .footer-boxes{grid-template-columns:1fr}
   .room-grid,.visit-grid{grid-template-columns:1fr}
   .seg-cols{grid-template-columns:1fr}
@@ -297,9 +297,7 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
   .band-red .inner,.band-pink .inner,.band-coral .inner{padding:64px 16px}
   .band-pink .inner{padding-bottom:130px}
   .fav-grid{grid-template-columns:1fr}
-  .finding-grid{grid-template-columns:1fr}
   .menu-list{grid-template-columns:1fr}
-  .mistake-list,.sources{columns:1}
   .btn-see-menu{display:none}
   .btn-call-mobile{display:inline-flex}
   .main-nav a:not(.nav-cta){display:none}
@@ -308,20 +306,14 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
   .wheel-stage{height:125vw}
   .wheel-disc{width:94vw}
   .wide-photo img{height:320px}
-  .gallery-stage{height:520px}
+  .gallery-stage{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 12px}
+  .g-item{position:static !important;width:auto !important;transform:none !important}
   .g-item img{height:130px}
+  .drag-sticker{display:none}
   .drag-sticker{width:104px;height:104px}
   .drop-sticker{width:106px;height:106px}
   .drop-sticker svg{width:92px;height:92px}
   .footer-wordmark{font-size:14.5vw}
-  .compare th,.compare td{padding:9px}
-  .compare{font-size:14px}
-  .compare,.compare thead,.compare tbody,.compare tr,.compare td{display:block;width:100%}
-  .compare thead{display:none}
-  .compare tr{margin-bottom:14px;border:2px solid var(--ink)}
-  .compare td{border:none;border-bottom:1.5px dashed #cbb99f}
-  .compare td:last-child{border-bottom:none}
-  .compare td:first-child{background:var(--tan);font-size:16px}
   .sticky-pill a{padding:8px 9px;font-size:11.5px}
   .sticky-pill a.opt{display:none}
   .topbar-inner{justify-content:center;text-align:center}
@@ -338,6 +330,7 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
 </style>
 </head>
 <body>
+<p class="demo-note">Sample site: a design demo for Metro Coffee, not the shop's official website.</p>
 
 <!-- ================= SAMPLE SITE ================= -->
 <header class="hero" id="hero">
@@ -367,7 +360,7 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
     <a href="#catering">Catering</a>
     <a href="#about">About Us</a>
     <a class="nav-cta" href="#visit">Visit Us</a>
-    <label class="mmm-toggle" for="mmmToggle"><span>Listen for Mmms</span><span class="switch"><input type="checkbox" id="mmmToggle" aria-label="Listen for Mmms" checked></span></label>
+    <label class="mmm-toggle" for="mmmToggle"><span>Listen for the mmms</span><span class="switch"><input type="checkbox" id="mmmToggle" aria-label="Listen for the mmms"></span></label>
   </nav>
   <div class="hero-content">
     <h1><span class="line"><span>Coffee.</span></span> <span class="line"><span>Tea.</span></span> <span class="line"><span>Pastries.</span></span></h1>
@@ -380,7 +373,6 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
     </div>
     <div class="hero-meta">
       <span class="hero-status" id="heroStatus">Checking hours...</span>
-      <a class="rating-line" href="https://www.facebook.com/Metro-Coffee-169823623052385/" target="_blank" rel="noopener"><span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 4.8 stars on Facebook &middot; 41 reviews</a>
       <span>1901 Jefferson Ave, Ste B</span>
     </div>
   </div>
@@ -412,6 +404,7 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
   <figure class="wide-photo" style="margin-bottom:0">
     <img src="__IMG2__" alt="Latte with detailed leaf latte art in a white cup on a dark wooden table">
   </figure>
+</section>
 
 <!-- Favorites -->
 <section class="section" id="favorites">
@@ -436,7 +429,7 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
         <span class="fav-tag sig">Signature Sandwich</span>
         <h3>Freebird Turkey Sandwich</h3>
         <p>From Memoranda Kitchen. Stacked turkey, crisp lettuce and tomato on hearty sliced bread, cut in half so you can see every layer.</p>
-        <p class="fav-why">Why it leads: the lunch regulars run a tab for</p>
+        <p class="fav-why">Why it leads: the sandwich to start with</p>
       </div>
     </article>
     <article class="fav-card reveal">
@@ -465,7 +458,7 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
   <svg class="watermark" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="20" fill="none" stroke="#ffffff" stroke-width="3"/><g stroke="#ffffff" stroke-width="3" stroke-linecap="round"><path d="M50 6v12M50 82v12M6 50h12M82 50h12M19 19l8 8M73 73l8 8M81 19l-8 8M27 73l-8 8"/></g></svg>
   <div class="inner">
     <p class="kicker reveal">Your All-Day Stop</p>
-    <h2 class="reveal">More Than a Morning Sp<span class="spot-o"><img src="__IMG1__" alt=""></span>t</h2>
+    <h2 class="reveal">More Than a Morning Sp<span class="spot-o"><img src="__IMG1__" alt="o"></span>t</h2>
     <div class="seg-cols">
       <article class="seg-col reveal">
         <div class="seg-photos">
@@ -481,7 +474,7 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
           <img class="seg-moving" src="__IMG3__" alt="" aria-hidden="true">
         </div>
         <h3>Coffee</h3>
-        <div class="seg-box"><p>Lighthouse Roasters beans in every cup. Whether it is a straight shot of espresso or the Dirty Chai, we help put the mmm in your morning ritual. Owner Stef started as a barista here, and her own daily drink is a simple Americano.</p></div>
+        <div class="seg-box"><p>Lighthouse Roasters beans in every cup. Whether it is a straight shot of espresso or the Dirty Chai, we help put the mmm in your morning ritual. Owner Stef's own daily drink is a simple Americano.</p></div>
       </article>
       <article class="seg-col reveal">
         <div class="seg-photos">
@@ -506,13 +499,7 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
     <p class="kicker reveal">Your Campus Living Room, Since 2004</p>
     <div class="room-grid">
       <div class="reveal">
-        <p class="room-copy">Room to <button class="room-word" type="button" data-room="__IMG1__" data-cap="A warm cup, taken slow between classes.">sip</button> between classes. Room to <button class="room-word" type="button" data-room="__IMG2__" data-cap="Something warm, with latte art on top.">warm up with</button> something warm. Room to <button class="room-word" type="button" data-room="__IMG0__" data-cap="Students studying together over coffee at a wooden table.">study</button> in the light, check the <button class="room-word" type="button" data-room="__IMG3__" data-cap="Local art on rotation, and local hands behind the counter.">art</button> on the walls, and run a <button class="room-word" type="button" data-room="__IMG5__" data-cap="Regulars run a tab here. Ask at the counter how it works.">tab</button> like a regular.</p>
-        <div class="amenities">
-          <div class="amenity"><strong>Free Wi-Fi</strong><span>Settle in and get the work done.</span></div>
-          <div class="amenity"><strong>Outlets at the tables</strong><span>Bring the laptop, stay for the second chapter.</span></div>
-          <div class="amenity"><strong>Outdoor seating</strong><span>Out front, right on the campus steps.</span></div>
-          <div class="amenity"><strong>Local art</strong><span>On the walls, on rotation.</span></div>
-        </div>
+        <p class="room-copy">Room to <button class="room-word" type="button" data-room="__IMG1__" data-cap="A warm cup, taken slow between classes.">sip</button> between classes. Room to <button class="room-word" type="button" data-room="__IMG2__" data-cap="Something warm, with latte art on top.">warm up with</button> something warm. Room to <button class="room-word" type="button" data-room="__IMG0__" data-cap="Students studying together over coffee at a wooden table.">study</button> in the light, check the <button class="room-word" type="button" data-room="__IMG3__" data-cap="Local hands behind the counter.">art</button> on the walls, and <button class="room-word" type="button" data-room="__IMG0__" data-cap="Stay a while. The light is good here.">stay</button> a while like a regular.</p>
       </div>
       <figure class="room-photo reveal" style="margin:0">
         <img id="roomImg" src="__IMG0__" alt="Students studying together over coffee at a wooden table in warm light">
@@ -531,7 +518,7 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
   </div>
   <div class="order-strip reveal">
     <strong>How to order</strong>
-    <span>Order at the counter. Non-dairy milks and a wall of syrups if you want to build your own. Regulars can run a tab - just ask.</span>
+    <span>Order at the counter. Non-dairy milks and a wall of syrups if you want to build your own.</span>
   </div>
   <div class="tabs reveal" role="tablist" aria-label="Menu categories">
     <button class="tab-btn" role="tab" aria-selected="true" data-tab="coffee" id="tab-coffee" aria-controls="panel-coffee" type="button">Coffee</button>
@@ -578,8 +565,8 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
     <p class="kicker">The Room, In Pictures</p>
     <h2>Drag a photo <span class="serif-bit">forward</span></h2>
     <p class="lede">Signature items first, the way a first-time visitor should meet them. Drag any photo to bring it to the front.</p>
-    <p class="follow-line">FOLLOW US <span class="grad-text">@METROCOFFEE</span>
-      <a class="ig-link" href="https://www.facebook.com/Metro-Coffee-169823623052385/" target="_blank" rel="noopener" aria-label="Metro Coffee on social media"><svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="#ffffff" stroke="none"/></svg></a>
+    <p class="follow-line">FOLLOW US <span class="grad-text">ON FACEBOOK</span>
+      <a class="ig-link" href="https://www.facebook.com/Metro-Coffee-169823623052385/" target="_blank" rel="noopener" aria-label="Metro Coffee on Facebook" style="font-family:Georgia,serif;font-weight:700;font-size:26px;color:#fff;text-decoration:none">f</a>
     </p>
   </div>
   <div class="gallery-stage reveal" id="galleryWrap">
@@ -593,6 +580,7 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
     <figure class="g-item" style="left:6%;top:52%;transform:rotate(2.5deg)"><img src="__IMG0__" alt="Students studying over coffee"></figure>
     <figure class="g-item" style="left:56%;top:56%;transform:rotate(-2.5deg)"><img src="__IMG3__" alt="Barista pouring latte art"></figure>
   </div>
+</section>
 
 
 <!-- Catering / Gift / About: one continuous coral-red band -->
@@ -621,7 +609,7 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
       <div>
         <p class="kicker">A Little About Us</p>
         <h2>Since <span class="serif-bit">2004</span></h2>
-        <p>Metro started with a simple idea: a real, independent coffee shop right at the heart of UW Tacoma. It opened in September 2004 in the historic Tioga Library Building. Stef, who started here as a barista, now owns the shop. In fall 2024, Metro celebrated 20 years on campus.</p>
+        <p>Metro started with a simple idea: a real, independent coffee shop right at the heart of UW Tacoma. It opened in September 2004 in the historic Tioga Library Building. Stefani McCullough took ownership in 2009. In fall 2024, Metro celebrated 20 years on campus.</p>
         <p>Almost everything here comes from nearby: Lighthouse Roasters coffee, Marsee Bakery pastries, Mad Hat teas, and Memoranda Kitchen sandwiches.</p>
         <p class="serif-line">When it opened, a 16 oz latte was $2.50. The steps, the regulars, and the first-sip mmm have not changed.</p>
         <img class="cg-photo" src="__IMG7__" alt="Barista in a brown apron pouring latte art from a steel pitcher">
@@ -650,7 +638,7 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
     </div>
     <div class="visit-card reveal">
       <h3>Directions &amp; Contact</h3>
-      <address>Metro Coffee<br>1901 Jefferson Ave, Ste B<br>Tacoma, WA 98402<br><span style="color:var(--deep);font-size:15px">On the UW Tacoma campus steps, in the Tioga Library Building. Outdoor seating out front.</span></address>
+      <address>Metro Coffee<br>1901 Jefferson Ave, Ste B<br>Tacoma, WA 98402<br><span style="color:var(--deep);font-size:15px">On the UW Tacoma campus steps, in the Tioga Library Building.</span></address>
       <p style="margin:16px 0 0"><a class="big-phone" href="tel:+12536278152">(253) 627-8152</a></p>
       <div class="visit-actions">
         <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Metro+Coffee+1901+Jefferson+Ave+Tacoma+WA+98402" target="_blank" rel="noopener">Get Directions</a>
@@ -686,9 +674,10 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
         <ul><li>Mon - Thu: 7am - 3pm</li><li>Friday: 7am - 1pm</li><li>Sat - Sun: Closed</li></ul>
         <h4>Follow Us</h4>
         <p style="margin:0"><a class="fb-circle" href="https://www.facebook.com/Metro-Coffee-169823623052385/" target="_blank" rel="noopener" aria-label="Metro Coffee on Facebook">f</a></p>
-        <p>Find us on Facebook for updates and campus news. Rated 4.8 stars by the regulars who keep it running.</p>
+        <p>Find us on Facebook for updates and campus news.</p>
       </div>
     </div>
+    <p class="sources-line">Hours and history from The Tacoma Ledger, November 2024. Photos are representative cafe photography, not the shop itself. This is a sample site built as a design demo.</p>
     <div class="footer-drop-row">
       <button class="drop-btn" id="dropCupBtn" type="button">Drop a Cup</button>
       <button class="drop-sticker" id="dropSticker" type="button" aria-label="Drop a cup">
@@ -698,8 +687,8 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
       <p class="footer-drop-note">Both buttons work. The cups land in the orange Cup Drop zone just above this footer.</p>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 Metro Coffee</span>
-      <span><a href="#sampleFooter">Privacy Policy</a> &middot; <a href="#about">About</a> &middot; <a href="#visit">Visit</a> &middot; <a href="tel:+12536278152">Call the Shop</a></span>
+      <span>&copy; 2026 Metro Coffee - sample site</span>
+      <span><a href="#about">About</a> &middot; <a href="#visit">Visit</a> &middot; <a href="tel:+12536278152">Call the Shop</a></span>
       <button class="top-circle" id="toTop" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 20 V5 M5 11 l7 -7 7 7"/></svg></button>
     </div>
   </div>
@@ -855,7 +844,7 @@ section[id],div[id="catering"]{scroll-margin-top:16px}
     });
   }
 
-  /* Listen for Mmms: toggle in the hero, on by default.
+  /* Listen for the mmms: toggle in the hero, off by default.
      The hum itself starts on the first tap or click, because browsers
      only allow audio after a user gesture. */
   var audioCtx=null, humNodes=null;
